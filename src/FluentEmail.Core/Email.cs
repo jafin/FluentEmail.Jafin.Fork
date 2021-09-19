@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
@@ -98,8 +99,8 @@ namespace FluentEmail.Core
         {
             if (emailAddress.Contains(";"))
             {
-                //email address has semi-colon, try split
-                var nameSplit = name?.Split(';') ?? new string [0];
+                // email address has semi-colon, try split
+                var nameSplit = name?.Split(';') ?? Array.Empty<string>();
                 var addressSplit = emailAddress.Split(';');
                 for (int i = 0; i < addressSplit.Length; i++)
                 {
@@ -338,7 +339,7 @@ namespace FluentEmail.Core
         /// <returns>Instance of the Email class</returns>
         public IFluentEmail UsingTemplateFromFile<T>(string filename, T model, bool isHtml = true)
         {
-            var template = "";
+            string template;
 
             using (var reader = new StreamReader(File.OpenRead(filename)))
             {
@@ -360,7 +361,7 @@ namespace FluentEmail.Core
         /// <returns>Instance of the Email class</returns>
         public IFluentEmail PlaintextAlternativeUsingTemplateFromFile<T>(string filename, T model)
         {
-            var template = "";
+            string template;
 
             using (var reader = new StreamReader(File.OpenRead(filename)))
             {
@@ -508,7 +509,7 @@ namespace FluentEmail.Core
         private static string GetCultureFileName(string fileName, CultureInfo culture)
         {
             var extension = Path.GetExtension(fileName);
-            var cultureExtension = string.Format("{0}{1}", culture.Name, extension);
+            var cultureExtension = $"{culture.Name}{extension}";
 
             var cultureFile = Path.ChangeExtension(fileName, cultureExtension);
             if (File.Exists(cultureFile))
