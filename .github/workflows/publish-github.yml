@@ -32,7 +32,7 @@ jobs:
     - name: Pack
       run: dotnet pack --configuration Release
     - name: PushGithub
-      run: dotnet nuget push "**/*.nupkg" --source ${{ env.NUGET_PATH }} --api-key ${{ env.NUGET_AUTH_TOKEN }} --skip-duplicate --no-symbols
+      run: dotnet nuget push "**/*.nupkg" --source ${{ env.NUGET_PATH }} --api-key ${{ env.NUGET_AUTH_TOKEN }} --skip-duplicate --no-symbols true
 
     # - name: Publish FluentEmail.Core
     #   uses: brandedoutcast/publish-nuget@v2.5.2
