@@ -8,7 +8,8 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      NUGET_PATH: https://nuget.pkg.github.com/jafin/index.json
+      NUGET_PATH: https://nuget.pkg.github.com/jafin/
+      NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
 
     steps:
     - uses: actions/checkout@v2
@@ -22,7 +23,7 @@ jobs:
         dotnet-version: '5.0.x'
 
     - name: Add private GitHub registry to NuGet
-      run: dotnet nuget add source --username USERNAME --password ${{ secrets.GITHUB_TOKEN }} --store-password-in-clear-text --name github ${{ env.NUGET_PATH }}
+      run: dotnet nuget add source --username USERNAME --password ${{ env.NUGET_AUTH_TOKEN }} --store-password-in-clear-text --name github ${{ env.NUGET_PATH }}
 
     - name: Install dependencies
       run: dotnet restore
@@ -33,7 +34,7 @@ jobs:
       uses: brandedoutcast/publish-nuget@v2.5.2
       with:
           PROJECT_FILE_PATH: src/FluentEmail.Core/FluentEmail.Core.csproj
-          NUGET_KEY: ${{ secrets.GITHUB_TOKEN }}
+          NUGET_KEY: ${{ env.NUGET_AUTH_TOKEN }}
           NUGET_SOURCE: ${{ env.NUGET_PATH }}
           INCLUDE_SYMBOLS: true
           # Useful with external providers like Nerdbank.GitVersioning, ignores VERSION_FILE_PATH & VERSION_REGEX
@@ -42,7 +43,7 @@ jobs:
       uses: brandedoutcast/publish-nuget@v2.5.2
       with:
           PROJECT_FILE_PATH: src/Senders/FluentEmail.Smtp/FluentEmail.Smtp.csproj
-          NUGET_KEY: ${{ secrets.GITHUB_TOKEN }}
+          NUGET_KEY: ${{ env.NUGET_AUTH_TOKEN }}
           NUGET_SOURCE: ${{ env.NUGET_PATH }}
           INCLUDE_SYMBOLS: true
           # Useful with external providers like Nerdbank.GitVersioning, ignores VERSION_FILE_PATH & VERSION_REGEX
@@ -51,7 +52,7 @@ jobs:
       uses: brandedoutcast/publish-nuget@v2.5.2
       with:
           PROJECT_FILE_PATH: src/Senders/FluentEmail.SendGrid/FluentEmail.SendGrid.csproj
-          NUGET_KEY: ${{ secrets.GITHUB_TOKEN }}
+          NUGET_KEY: ${{ env.NUGET_AUTH_TOKEN }}
           NUGET_SOURCE: ${{ env.NUGET_PATH }}
           INCLUDE_SYMBOLS: true
           # Useful with external providers like Nerdbank.GitVersioning, ignores VERSION_FILE_PATH & VERSION_REGEX
@@ -61,13 +62,13 @@ jobs:
     #  uses: brandedoutcast/publish-nuget@v2.5.2
     #  with:
     #      PROJECT_FILE_PATH: src/Senders/FluentEmail.Mailtrap/FluentEmail.Mailtrap.csproj
-    #      NUGET_KEY: ${{ secrets.GITHUB_TOKEN }}
+    #      NUGET_KEY: ${{ env.NUGET_AUTH_TOKEN }}
     #      NUGET_SOURCE: ${{ env.NUGET_PATH }}
     - name: Publish FluentEmail.MailKit
       uses: brandedoutcast/publish-nuget@v2.5.2
       with:
           PROJECT_FILE_PATH: src/Senders/FluentEmail.MailKit/FluentEmail.MailKit.csproj
-          NUGET_KEY: ${{ secrets.GITHUB_TOKEN }}
+          NUGET_KEY: ${{ env.NUGET_AUTH_TOKEN }}
           NUGET_SOURCE: ${{ env.NUGET_PATH }}
           INCLUDE_SYMBOLS: true
           # Useful with external providers like Nerdbank.GitVersioning, ignores VERSION_FILE_PATH & VERSION_REGEX
@@ -77,7 +78,7 @@ jobs:
       uses: brandedoutcast/publish-nuget@v2.5.2
       with:
           PROJECT_FILE_PATH: src/Senders/FluentEmail.Mailgun/FluentEmail.Mailgun.csproj
-          NUGET_KEY: ${{ secrets.GITHUB_TOKEN }}
+          NUGET_KEY: ${{ env.NUGET_AUTH_TOKEN }}
           NUGET_SOURCE: ${{ env.NUGET_PATH }}
           INCLUDE_SYMBOLS: true
           # Useful with external providers like Nerdbank.GitVersioning, ignores VERSION_FILE_PATH & VERSION_REGEX
@@ -87,7 +88,7 @@ jobs:
       uses: brandedoutcast/publish-nuget@v2.5.2
       with:
           PROJECT_FILE_PATH: src/Renderers/FluentEmail.Razor/FluentEmail.Razor.csproj
-          NUGET_KEY: ${{ secrets.GITHUB_TOKEN }}
+          NUGET_KEY: ${{ env.NUGET_AUTH_TOKEN }}
           NUGET_SOURCE: ${{ env.NUGET_PATH }}
           INCLUDE_SYMBOLS: true
           # Useful with external providers like Nerdbank.GitVersioning, ignores VERSION_FILE_PATH & VERSION_REGEX
@@ -97,7 +98,7 @@ jobs:
       uses: brandedoutcast/publish-nuget@v2.5.2
       with:
           PROJECT_FILE_PATH: src/Renderers/FluentEmail.Liquid/FluentEmail.Liquid.csproj
-          NUGET_KEY: ${{ secrets.GITHUB_TOKEN }}
+          NUGET_KEY: ${{ env.NUGET_AUTH_TOKEN }}
           NUGET_SOURCE: ${{ env.NUGET_PATH }}
           INCLUDE_SYMBOLS: true
           # Useful with external providers like Nerdbank.GitVersioning, ignores VERSION_FILE_PATH & VERSION_REGEX
@@ -108,5 +109,5 @@ jobs:
     #  uses: brandedoutcast/publish-nuget@v2.5.2
     #  with:
     #      PROJECT_FILE_PATH: src/Senders/FluentEmail.Graph/FluentEmail.Graph.csproj
-    #      NUGET_KEY: ${{secrets.NUGET_API_KEY}}
+    #      NUGET_KEY: ${{ env.NUGET_AUTH_TOKEN }}
     #      NUGET_SOURCE: ${{ env.NUGET_PATH }}
