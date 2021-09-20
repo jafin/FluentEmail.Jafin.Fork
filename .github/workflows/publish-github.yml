@@ -8,7 +8,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      NUGET_PATH: https://nuget.pkg.github.com/jafin/
+      NUGET_PATH: https://nuget.pkg.github.com/jafin/index.json
       NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
 
     steps:
