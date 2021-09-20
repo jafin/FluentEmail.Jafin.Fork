@@ -11,7 +11,8 @@ jobs:
       APP_NAME: FluentEmail                                        # set this to your application's name
       #NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
       GITHUB_REPOSITORY_OWNER: ${{ github.repository_owner }}   # set this to access token to github.com
-      GITHUB_API_KEY: ${{ github.token }}                         # set this to access token to github.com
+      #GITHUB_API_KEY: ${{ github.token }}                      # set this to access token to github.com
+      GITHUB_API_KEY: ${{ secrets.GH_NUGET }}                   # set this to access token to github.com
       NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}               # set this to access token to nuget.org
 
     steps:
@@ -34,9 +35,11 @@ jobs:
       run: dotnet build --configuration Release --no-restore
     - name: Pack
       run: dotnet pack --configuration Release
+
     - name: Add Nuget sources
       run: |
           dotnet nuget add source https://nuget.pkg.github.com/${{ env.GITHUB_REPOSITORY_OWNER }}/index.json --name github
+
     - name: NuGet push on GitHub
       run: dotnet nuget push "**/*.nupkg" --source github --api-key ${{ env.GITHUB_API_KEY }} --skip-duplicate
 
