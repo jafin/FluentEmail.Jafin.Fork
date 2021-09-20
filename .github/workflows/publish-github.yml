@@ -33,7 +33,7 @@ jobs:
       uses: brandedoutcast/publish-nuget@v2.5.2
       with:
           PROJECT_FILE_PATH: src/FluentEmail.Core/FluentEmail.Core.csproj
-          #NUGET_KEY: ${{secrets.NUGET_API_KEY}}
+          NUGET_KEY: ${{ secrets.GITHUB_TOKEN }}
           NUGET_SOURCE: ${{ env.NUGET_PATH }}
           INCLUDE_SYMBOLS: true
           # Useful with external providers like Nerdbank.GitVersioning, ignores VERSION_FILE_PATH & VERSION_REGEX
@@ -42,7 +42,7 @@ jobs:
       uses: brandedoutcast/publish-nuget@v2.5.2
       with:
           PROJECT_FILE_PATH: src/Senders/FluentEmail.Smtp/FluentEmail.Smtp.csproj
-          #NUGET_KEY: ${{secrets.NUGET_API_KEY}}
+          NUGET_KEY: ${{ secrets.GITHUB_TOKEN }}
           NUGET_SOURCE: ${{ env.NUGET_PATH }}
           INCLUDE_SYMBOLS: true
           # Useful with external providers like Nerdbank.GitVersioning, ignores VERSION_FILE_PATH & VERSION_REGEX
@@ -51,7 +51,7 @@ jobs:
       uses: brandedoutcast/publish-nuget@v2.5.2
       with:
           PROJECT_FILE_PATH: src/Senders/FluentEmail.SendGrid/FluentEmail.SendGrid.csproj
-          #NUGET_KEY: ${{secrets.NUGET_API_KEY}}
+          NUGET_KEY: ${{ secrets.GITHUB_TOKEN }}
           NUGET_SOURCE: ${{ env.NUGET_PATH }}
           INCLUDE_SYMBOLS: true
           # Useful with external providers like Nerdbank.GitVersioning, ignores VERSION_FILE_PATH & VERSION_REGEX
@@ -61,13 +61,13 @@ jobs:
     #  uses: brandedoutcast/publish-nuget@v2.5.2
     #  with:
     #      PROJECT_FILE_PATH: src/Senders/FluentEmail.Mailtrap/FluentEmail.Mailtrap.csproj
-    #      NUGET_KEY: ${{secrets.NUGET_API_KEY}}
+    #      NUGET_KEY: ${{ secrets.GITHUB_TOKEN }}
     #      NUGET_SOURCE: ${{ env.NUGET_PATH }}
     - name: Publish FluentEmail.MailKit
       uses: brandedoutcast/publish-nuget@v2.5.2
       with:
           PROJECT_FILE_PATH: src/Senders/FluentEmail.MailKit/FluentEmail.MailKit.csproj
-          #NUGET_KEY: ${{secrets.NUGET_API_KEY}}
+          NUGET_KEY: ${{ secrets.GITHUB_TOKEN }}
           NUGET_SOURCE: ${{ env.NUGET_PATH }}
           INCLUDE_SYMBOLS: true
           # Useful with external providers like Nerdbank.GitVersioning, ignores VERSION_FILE_PATH & VERSION_REGEX
@@ -77,7 +77,7 @@ jobs:
       uses: brandedoutcast/publish-nuget@v2.5.2
       with:
           PROJECT_FILE_PATH: src/Senders/FluentEmail.Mailgun/FluentEmail.Mailgun.csproj
-          #NUGET_KEY: ${{secrets.NUGET_API_KEY}}
+          NUGET_KEY: ${{ secrets.GITHUB_TOKEN }}
           NUGET_SOURCE: ${{ env.NUGET_PATH }}
           INCLUDE_SYMBOLS: true
           # Useful with external providers like Nerdbank.GitVersioning, ignores VERSION_FILE_PATH & VERSION_REGEX
@@ -87,7 +87,7 @@ jobs:
       uses: brandedoutcast/publish-nuget@v2.5.2
       with:
           PROJECT_FILE_PATH: src/Renderers/FluentEmail.Razor/FluentEmail.Razor.csproj
-          #NUGET_KEY: ${{secrets.NUGET_API_KEY}}
+          NUGET_KEY: ${{ secrets.GITHUB_TOKEN }}
           NUGET_SOURCE: ${{ env.NUGET_PATH }}
           INCLUDE_SYMBOLS: true
           # Useful with external providers like Nerdbank.GitVersioning, ignores VERSION_FILE_PATH & VERSION_REGEX
@@ -97,7 +97,7 @@ jobs:
       uses: brandedoutcast/publish-nuget@v2.5.2
       with:
           PROJECT_FILE_PATH: src/Renderers/FluentEmail.Liquid/FluentEmail.Liquid.csproj
-          #NUGET_KEY: ${{secrets.NUGET_API_KEY}}
+          NUGET_KEY: ${{ secrets.GITHUB_TOKEN }}
           NUGET_SOURCE: ${{ env.NUGET_PATH }}
           INCLUDE_SYMBOLS: true
           # Useful with external providers like Nerdbank.GitVersioning, ignores VERSION_FILE_PATH & VERSION_REGEX
