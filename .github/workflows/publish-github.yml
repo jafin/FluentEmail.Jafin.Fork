@@ -11,8 +11,8 @@ jobs:
       APP_NAME: FluentEmail                                        # set this to your application's name
       #NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
       GITHUB_REPOSITORY_OWNER: ${{ github.repository_owner }}   # set this to access token to github.com
-      #GITHUB_API_KEY: ${{ github.token }}                      # set this to access token to github.com
-      GITHUB_API_KEY: ${{ secrets.GH_NUGET }}                   # set this to access token to github.com
+      GITHUB_API_KEY: ${{ github.token }}                      # set this to access token to github.com
+      #GITHUB_API_KEY: ${{ secrets.GH_NUGET }}                   # set this to access token to github.com
       NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}               # set this to access token to nuget.org
 
     steps:
